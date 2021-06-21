@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<!--
+ ~ Copyright © Soft Commerce Ltd. All rights reserved.
+ ~ See LICENSE.txt for license details.
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="fakeentitycreator" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Fake Entity Creator</label>
+            <tab>softcommerce_tab</tab>
+            <resource>SoftCommerce_FakeEntityCreator::fakeentitycreator_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="version" type="note" translate="label" sortOrder="1" showInDefault="1">
+                    <label>Version</label>
+                    <frontend_model>SoftCommerce\FakeEntityCreator\Block\Adminhtml\System\Config\Form\Field\Version</frontend_model>
+                    <comment>Current module version</comment>
+                </field>
+                <field id="locale" translate="label" type="multiselect" sortOrder="2" showInDefault="1">
+                    <label>Locale</label>
+                    <source_model>Magento\Config\Model\Config\Source\Locale</source_model>
+                    <comment>List of locales that are used in random data generation. Empty list will default to "en_GB, en_US and de_DE".</comment>
+                </field>
+            </group>
+            <group id="order_entity" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Order Entity</label>
+                <field id="is_active" translate="label comment" type="select" sortOrder="2" showInDefault="1">
+                    <label>Enable Fake Order</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="cron_frequency" translate="label" type="text" sortOrder="3" showInDefault="1">
+                    <label>Cron Schedule</label>
+                    <backend_model>SoftCommerce\FakeEntityCreator\Model\Config\Backend\Order\CronFrequency</backend_model>
+                    <comment>Leave empty to disable unattended queue.</comment>
+                    <depends>
+                        <field id="is_active">1</field>
+                    </depends>
+                </field>
+                <field id="process_batch_size" translate="label" type="text" sortOrder="4" showInDefault="1">
+                    <label>Schedule process batch size</label>
+                    <backend_model>SoftCommerce\FakeEntityCreator\Model\Config\Backend\Order\CronFrequency</backend_model>
+                    <comment>Number of orders created per process.</comment>
+                    <depends>
+                        <field id="is_active">1</field>
+                    </depends>
+                </field>
+                <field id="is_active_invoice" translate="label comment" type="select" sortOrder="5" showInDefault="1">
+                    <label>Allow Invoice Creation</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="is_active">1</field>
+                    </depends>
+                </field>
+                <field id="invoice_cobc" translate="label comment" type="text" sortOrder="6" showInDefault="1">
+                    <label>Invoice chance of being created</label>
+                    <validate>validate-number</validate>
+                    <comment>Provide number between 1 and 100 which will represent percentage change of getting true.</comment>
+                    <depends>
+                        <field id="is_active">1</field>
+                        <field id="is_active_invoice">1</field>
+                    </depends>
+                </field>
+                <field id="is_active_shipment" translate="label comment" type="select" sortOrder="7" showInDefault="1">
+                    <label>Allow Shipment Creation</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="is_active">1</field>
+                    </depends>
+                </field>
+                <field id="shipment_cobc" translate="label comment" type="text" sortOrder="8" showInDefault="1">
+                    <label>Shipment chance of being created</label>
+                    <validate>validate-number</validate>
+                    <comment>Provide number between 1 and 100 which will represent percentage change of getting true.</comment>
+                    <depends>
+                        <field id="is_active">1</field>
+                        <field id="is_active_shipment">1</field>
+                    </depends>
+                </field>
+                <field id="payment_methods" translate="label" type="multiselect" sortOrder="9" showInDefault="1">
+                    <label>Payment methods</label>
+                    <source_model>SoftCommerce\FakeEntityCreator\Model\Config\Source\PaymentMethod</source_model>
+                    <depends>
+                        <field id="is_active">1</field>
+                    </depends>
+                </field>
+                <field id="shipping_methods" translate="label" type="multiselect" sortOrder="10" showInDefault="1">
+                    <label>Shipping methods</label>
+                    <source_model>Magento\Shipping\Model\Config\Source\Allmethods</source_model>
+                    <depends>
+                        <field id="is_active">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

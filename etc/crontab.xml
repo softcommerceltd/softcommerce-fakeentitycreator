@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+ ~ Copyright © Soft Commerce Ltd. All rights reserved.
+ ~ See LICENSE.txt for license details.
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="fakeentitycreator_order_queue" instance="SoftCommerce\FakeEntityCreator\Cron\Backend\OrderQueue" method="execute">
+            <config_path>crontab/default/jobs/fakeentitycreator_order_queue/schedule/cron_expr</config_path>
+        </job>
+    </group>
+</config>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+ ~ Copyright © Soft Commerce Ltd. All rights reserved.
+ ~ See LICENSE.txt for license details.
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="SoftCommerce_FakeEntityCreator::config_fakeentitycreator"
+             title="Fake Entity Creator"
+             translate="title"
+             module="SoftCommerce_FakeEntityCreator"
+             sortOrder="90"
+             parent="SoftCommerce_Core::config"
+             action="adminhtml/system_config/edit/section/fakeentitycreator/"
+             resource="SoftCommerce_FakeEntityCreator::fakeentitycreator_config"/>
+    </menu>
+</config>

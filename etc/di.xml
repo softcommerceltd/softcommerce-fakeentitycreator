@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+ ~ Copyright © Soft Commerce Ltd. All rights reserved.
+ ~ See LICENSE.txt for license details.
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- config interface -->
+    <preference for="SoftCommerce\FakeEntityCreator\Model\ConfigInterface" type="SoftCommerce\FakeEntityCreator\Model\Config"/>
+    <!-- order ::: related entity interface -->
+    <preference for="SoftCommerce\FakeEntityCreator\Model\InvoiceServiceInterface" type="SoftCommerce\FakeEntityCreator\Model\InvoiceService"/>
+    <preference for="SoftCommerce\FakeEntityCreator\Model\OrderServiceInterface" type="SoftCommerce\FakeEntityCreator\Model\OrderService"/>
+    <preference for="SoftCommerce\FakeEntityCreator\Model\OrderService\OrderRequestCriteriaInterface" type="SoftCommerce\FakeEntityCreator\Model\OrderService\OrderRequestCriteria"/>
+    <preference for="SoftCommerce\FakeEntityCreator\Model\OrderService\OrderRequestCriteriaBuilderInterface" type="SoftCommerce\FakeEntityCreator\Model\OrderService\OrderRequestCriteriaBuilder"/>
+    <!-- CLI -->
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="create_fake_order" xsi:type="object">SoftCommerce\FakeEntityCreator\Console\Command\CreateOrder</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
