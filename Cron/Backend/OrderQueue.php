@@ -73,6 +73,10 @@ class OrderQueue
      */
     public function execute(): void
     {
+        if (!$this->config->isActiveOrderEntity()) {
+            return;
+        }
+
         $result = [];
         $count = $this->config->getProcessBatchSize();
         for ($i = 1; $i <= $count; $i++) {
