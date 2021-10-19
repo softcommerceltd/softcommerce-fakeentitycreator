@@ -28,7 +28,7 @@ use SoftCommerce\Core\Framework\DataStorage;
 use SoftCommerce\FakeEntityCreator\Model\ConfigInterface;
 
 /**
- * @inheritdoc
+ * @inheritDoc
  */
 class OrderRequestCriteria extends DataStorage implements OrderRequestCriteriaInterface
 {
@@ -122,7 +122,7 @@ class OrderRequestCriteria extends DataStorage implements OrderRequestCriteriaIn
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getStore(): StoreInterface
     {
@@ -133,7 +133,7 @@ class OrderRequestCriteria extends DataStorage implements OrderRequestCriteriaIn
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setStore(StoreInterface $store)
     {
@@ -142,7 +142,7 @@ class OrderRequestCriteria extends DataStorage implements OrderRequestCriteriaIn
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getStoreCode(): string
     {
@@ -153,7 +153,7 @@ class OrderRequestCriteria extends DataStorage implements OrderRequestCriteriaIn
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setStoreCode(string $storeCode)
     {
@@ -162,7 +162,7 @@ class OrderRequestCriteria extends DataStorage implements OrderRequestCriteriaIn
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getCustomer(): CustomerInterface
     {
@@ -188,7 +188,7 @@ class OrderRequestCriteria extends DataStorage implements OrderRequestCriteriaIn
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setCustomer(CustomerInterface $customer)
     {
@@ -197,7 +197,7 @@ class OrderRequestCriteria extends DataStorage implements OrderRequestCriteriaIn
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getEmail(): ?string
     {
@@ -219,7 +219,7 @@ class OrderRequestCriteria extends DataStorage implements OrderRequestCriteriaIn
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setEmail(string $email)
     {
@@ -228,7 +228,7 @@ class OrderRequestCriteria extends DataStorage implements OrderRequestCriteriaIn
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getLocaleCode(bool $iso3166 = false): ?string
     {
@@ -241,7 +241,7 @@ class OrderRequestCriteria extends DataStorage implements OrderRequestCriteriaIn
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setLocaleCode(string $localeCode)
     {
@@ -250,7 +250,7 @@ class OrderRequestCriteria extends DataStorage implements OrderRequestCriteriaIn
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getCurrencyCode(): ?string
     {
@@ -261,7 +261,7 @@ class OrderRequestCriteria extends DataStorage implements OrderRequestCriteriaIn
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setCurrencyCode(string $currencyCode)
     {
@@ -270,7 +270,7 @@ class OrderRequestCriteria extends DataStorage implements OrderRequestCriteriaIn
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getPaymentMethod(): ?string
     {
@@ -281,7 +281,7 @@ class OrderRequestCriteria extends DataStorage implements OrderRequestCriteriaIn
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setPaymentMethod(string $paymentMethod)
     {
@@ -290,7 +290,7 @@ class OrderRequestCriteria extends DataStorage implements OrderRequestCriteriaIn
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getShippingMethod(): ?string
     {
@@ -301,7 +301,7 @@ class OrderRequestCriteria extends DataStorage implements OrderRequestCriteriaIn
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setShippingMethod(string $shippingMethod)
     {
@@ -310,7 +310,7 @@ class OrderRequestCriteria extends DataStorage implements OrderRequestCriteriaIn
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getCartQty(): int
     {
@@ -318,7 +318,7 @@ class OrderRequestCriteria extends DataStorage implements OrderRequestCriteriaIn
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setCartQty(int $cartQty)
     {
@@ -327,7 +327,7 @@ class OrderRequestCriteria extends DataStorage implements OrderRequestCriteriaIn
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getItemSku(): array
     {
@@ -338,7 +338,7 @@ class OrderRequestCriteria extends DataStorage implements OrderRequestCriteriaIn
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setItemSku(array $itemSku)
     {
@@ -347,7 +347,7 @@ class OrderRequestCriteria extends DataStorage implements OrderRequestCriteriaIn
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getItemQty(): int
     {
@@ -355,7 +355,7 @@ class OrderRequestCriteria extends DataStorage implements OrderRequestCriteriaIn
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setItemQty(int $itemQty)
     {
@@ -364,7 +364,7 @@ class OrderRequestCriteria extends DataStorage implements OrderRequestCriteriaIn
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getAddress(string $typeId = self::BILLING_ADDRESS): array
     {
@@ -375,7 +375,7 @@ class OrderRequestCriteria extends DataStorage implements OrderRequestCriteriaIn
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setAddress(array $address, string $typeId)
     {

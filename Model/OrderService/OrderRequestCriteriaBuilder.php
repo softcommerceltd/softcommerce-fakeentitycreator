@@ -18,7 +18,7 @@ use Magento\Store\Model\StoreManagerInterface;
 use SoftCommerce\FakeEntityCreator\Model\ConfigInterface;
 
 /**
- * @inheritdoc
+ * @inheritDoc
  */
 class OrderRequestCriteriaBuilder extends OrderRequestCriteria implements OrderRequestCriteriaBuilderInterface
 {

@@ -11,7 +11,7 @@ namespace SoftCommerce\FakeEntityCreator\Model;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 
 /**
- * @inheritdoc
+ * @inheritDoc
  */
 class Config implements ConfigInterface
 {
@@ -27,7 +27,7 @@ class Config implements ConfigInterface
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function isActiveOrderEntity(): bool
     {
@@ -35,7 +35,7 @@ class Config implements ConfigInterface
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getProcessBatchSize(): int
     {
@@ -43,7 +43,7 @@ class Config implements ConfigInterface
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function isActiveOrderEntityInvoice(): bool
     {
@@ -51,7 +51,7 @@ class Config implements ConfigInterface
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getInvoiceChanceOfBeingCreated(): int
     {
@@ -59,7 +59,7 @@ class Config implements ConfigInterface
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function isActiveOrderEntityShipment(): bool
     {
@@ -67,7 +67,7 @@ class Config implements ConfigInterface
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getShipmentChanceOfBeingCreated(): int
     {
@@ -75,7 +75,7 @@ class Config implements ConfigInterface
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getLocaleOptions(): array
     {
@@ -86,7 +86,7 @@ class Config implements ConfigInterface
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getPaymentMethodList(): array
     {
@@ -97,7 +97,7 @@ class Config implements ConfigInterface
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getShippingMethodList(): array
     {

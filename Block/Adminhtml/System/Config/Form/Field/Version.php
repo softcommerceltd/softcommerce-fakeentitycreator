@@ -40,7 +40,7 @@ class Version extends Field
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function _getElementHtml(AbstractElement $element)
     {

@@ -25,7 +25,7 @@ use SoftCommerce\FakeEntityCreator\Model\OrderService\OrderRequestCriteriaBuilde
 use SoftCommerce\FakeEntityCreator\Model\OrderService\OrderRequestCriteriaInterface;
 
 /**
- * @inheritdoc
+ * @inheritDoc
  */
 class OrderService implements OrderServiceInterface
 {
@@ -108,7 +108,7 @@ class OrderService implements OrderServiceInterface
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function execute(?OrderRequestCriteriaInterface $requestCriteria = null): void
     {
@@ -127,7 +127,7 @@ class OrderService implements OrderServiceInterface
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getOrder(): ?OrderInterface
     {
@@ -135,7 +135,7 @@ class OrderService implements OrderServiceInterface
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getQuote(): ?CartInterface
     {

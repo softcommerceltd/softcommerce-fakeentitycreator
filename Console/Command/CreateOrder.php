@@ -63,7 +63,7 @@ class CreateOrder extends Command
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function configure()
     {
@@ -88,7 +88,7 @@ class CreateOrder extends Command
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {

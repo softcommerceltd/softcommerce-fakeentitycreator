@@ -16,7 +16,7 @@ use Magento\Sales\Api\InvoiceRepositoryInterface;
 use Magento\Sales\Model\Service;
 
 /**
- * @inheritdoc
+ * @inheritDoc
  */
 class InvoiceService implements InvoiceServiceInterface
 {
@@ -57,7 +57,7 @@ class InvoiceService implements InvoiceServiceInterface
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function execute(OrderInterface $order): void
     {
@@ -83,7 +83,7 @@ class InvoiceService implements InvoiceServiceInterface
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getInvoice(): ?InvoiceInterface
     {

@@ -42,7 +42,7 @@ class PaymentMethod implements OptionSourceInterface
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function toOptionArray()
     {

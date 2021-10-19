@@ -67,7 +67,7 @@ class CronFrequency extends Value
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      * @throws LocalizedException
      */
     public function afterSave()
