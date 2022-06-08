@@ -9,8 +9,6 @@ declare(strict_types=1);
 namespace SoftCommerce\FakeEntityCreator\Cron\Backend;
 
 use Faker;
-use Laminas\Log\Logger;
-use Laminas\Log\Writer\Stream;
 use SoftCommerce\FakeEntityCreator\Model\ConfigInterface;
 use SoftCommerce\FakeEntityCreator\Model\InvoiceServiceInterface;
 use SoftCommerce\FakeEntityCreator\Model\OrderServiceInterface;
@@ -42,11 +40,6 @@ class OrderQueue
     private $faker;
 
     /**
-     * @var Logger
-     */
-    private $logger;
-
-    /**
      * OrderQueue constructor.
      * @param ConfigInterface $config
      * @param OrderServiceInterface $orderService
@@ -63,19 +56,21 @@ class OrderQueue
         $this->orderService = $orderService;
         $this->invoiceService = $invoiceService;
         $this->faker = $fakerFactory->create();
-        $writer = new Stream(BP . '/var/log/fake-order.log');
-        $this->logger = new Logger();
-        $this->logger->addWriter($writer);
     }
 
     /**
      * @return void
+     * @throws \Zend_Log_Exception
      */
     public function execute(): void
     {
         if (!$this->config->isActiveOrderEntity()) {
             return;
         }
+
+        $writer = new \Zend_Log_Writer_Stream(BP . '/var/log/fake-order.log');
+        $logger = new \Zend_Log();
+        $logger->addWriter($writer);
 
         $result = [];
         $count = $this->config->getProcessBatchSize();
@@ -93,12 +88,16 @@ class OrderQueue
                     }
                 }
             } catch (\Exception $e) {
-                $this->logger->debug(__METHOD__, ['error' => $e->getMessage()]);
+                $logger->debug(print_r([
+                    __METHOD__ => ['error' => $e->getMessage()]
+                ], true), []);
             }
         }
 
         if (!empty($result)) {
-            $this->logger->debug(__METHOD__, $result);
+            $logger->debug(print_r([
+                __METHOD__ => $result
+            ], true), []);
         }
     }
 }

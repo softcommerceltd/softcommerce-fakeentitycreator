@@ -15,7 +15,7 @@ use Magento\Framework\Exception\State\InputMismatchException;
 use Magento\Quote\Api\Data\CartInterface;
 use Magento\Quote\Model\Quote;
 use Magento\Sales\Api\Data\OrderInterface;
-use Plenty\Order\Model\Order;
+use SoftCommerce\PlentyOrder\Model\Order;
 use SoftCommerce\FakeEntityCreator\Model\OrderService\OrderRequestCriteriaInterface;
 
 /**
