@@ -24,7 +24,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class CreateOrder extends Command
 {
-    private const COMMAND_NAME = 'fakeentitycreator:create_fake_order';
+    private const COMMAND_NAME = 'fakeentitycreator:create_order';
     private const COUNTER_FLAG = 'counter';
     private const INVOICE_FLAG = 'invoice';
 
@@ -74,7 +74,7 @@ class CreateOrder extends Command
                     self::COUNTER_FLAG,
                     '-c',
                     InputOption::VALUE_REQUIRED,
-                    'Count Filter'
+                    'Number of orders to be created.'
                 ),
                 new InputOption(
                     self::INVOICE_FLAG,
