@@ -11,10 +11,7 @@ namespace SoftCommerce\FakeEntityCreator\Console\Command;
 use Magento\Framework\App\Area;
 use Magento\Framework\App\State;
 use Magento\Framework\Console\Cli;
-use Magento\Store\Model\StoreManagerInterface;
-use Magento\Store\Model\StoreManagerInterfaceFactory;
 use SoftCommerce\FakeEntityCreator\Model\InvoiceServiceInterfaceFactory;
-use SoftCommerce\FakeEntityCreator\Model\OrderService\OrderRequestCriteriaBuilderInterface;
 use SoftCommerce\FakeEntityCreator\Model\OrderServiceInterfaceFactory;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -163,7 +160,6 @@ class CreateOrder extends Command
                 }
             } catch (\Exception $e) {
                 $output->writeln(sprintf('<error>%s</error>', $e->getMessage()));
-                return Cli::RETURN_FAILURE;
             }
         }
         if ($count) {
