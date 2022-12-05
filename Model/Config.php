@@ -29,6 +29,15 @@ class Config implements ConfigInterface
     /**
      * @inheritDoc
      */
+    public function getDefaultEmailDomain(): ?string
+    {
+        $parse = parse_url($this->scopeConfig->getValue(self::XML_PATH_DEFAULT_EMAIL_DOMAIN) ?: '');
+        return $parse['host'] ?? null;
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function isActiveOrderEntity(): bool
     {
         return (bool) $this->scopeConfig->getValue(self::XML_PATH_ORDER_ENTITY_IS_ACTIVE);
@@ -104,6 +113,8 @@ class Config implements ConfigInterface
         if (!$values = $this->scopeConfig->getValue(self::XML_PATH_ORDER_ENTITY_SHIPPING_METHOD_LIST)) {
             return [];
         }
-        return explode(',', $values);
+        return array_filter(
+            explode(',', $values)
+        );
     }
 }

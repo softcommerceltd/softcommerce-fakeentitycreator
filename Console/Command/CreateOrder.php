@@ -11,7 +11,10 @@ namespace SoftCommerce\FakeEntityCreator\Console\Command;
 use Magento\Framework\App\Area;
 use Magento\Framework\App\State;
 use Magento\Framework\Console\Cli;
+use Magento\Store\Model\StoreManagerInterface;
+use Magento\Store\Model\StoreManagerInterfaceFactory;
 use SoftCommerce\FakeEntityCreator\Model\InvoiceServiceInterfaceFactory;
+use SoftCommerce\FakeEntityCreator\Model\OrderService\OrderRequestCriteriaBuilderInterface;
 use SoftCommerce\FakeEntityCreator\Model\OrderServiceInterfaceFactory;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -24,14 +27,21 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class CreateOrder extends Command
 {
-    private const COMMAND_NAME = 'fakeentitycreator:create_fake_order';
+    private const COMMAND_NAME = 'fakeentitycreator:create_order';
     private const COUNTER_FLAG = 'counter';
     private const INVOICE_FLAG = 'invoice';
+    private const SKU_FILTER = 'sku';
+    private const STORE_FILTER = 'store';
 
     /**
      * @var State
      */
     private $appState;
+
+    /**
+     * @var OrderRequestCriteriaBuilderInterface
+     */
+    private $requestCriteriaBuilder;
 
     /**
      * @var OrderServiceInterfaceFactory
@@ -44,21 +54,31 @@ class CreateOrder extends Command
     private $invoiceServiceFactory;
 
     /**
-     * CreateOrder constructor.
+     * @var StoreManagerInterface
+     */
+    private $storeManager;
+
+    /**
      * @param State $appState
+     * @param OrderRequestCriteriaBuilderInterface $requestCriteriaBuilder
      * @param OrderServiceInterfaceFactory $orderServiceFactory
      * @param InvoiceServiceInterfaceFactory $invoiceServiceFactory
+     * @param StoreManagerInterface $storeManager
      * @param string|null $name
      */
     public function __construct(
         State $appState,
+        OrderRequestCriteriaBuilderInterface $requestCriteriaBuilder,
         OrderServiceInterfaceFactory $orderServiceFactory,
         InvoiceServiceInterfaceFactory $invoiceServiceFactory,
+        StoreManagerInterface $storeManager,
         ?string $name = null
     ) {
         $this->appState = $appState;
+        $this->requestCriteriaBuilder = $requestCriteriaBuilder;
         $this->orderServiceFactory = $orderServiceFactory;
         $this->invoiceServiceFactory = $invoiceServiceFactory;
+        $this->storeManager = $storeManager;
         parent::__construct($name);
     }
 
@@ -74,14 +94,26 @@ class CreateOrder extends Command
                     self::COUNTER_FLAG,
                     '-c',
                     InputOption::VALUE_REQUIRED,
-                    'Count Filter'
+                    'Counter Flag. E.g. Number of orders to be created.'
                 ),
                 new InputOption(
                     self::INVOICE_FLAG,
                     '-i',
                     InputOption::VALUE_NONE,
-                    'Status Filter'
-                )
+                    'Invoice Flag.'
+                ),
+                new InputOption(
+                    self::STORE_FILTER,
+                    '-w',
+                    InputOption::VALUE_REQUIRED,
+                    'Store ID Filter.'
+                ),
+                new InputOption(
+                    self::SKU_FILTER,
+                    '-s',
+                    InputOption::VALUE_REQUIRED,
+                    'SKU Filter.'
+                ),
             ]);
 
         parent::configure();
@@ -93,8 +125,24 @@ class CreateOrder extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->appState->setAreaCode(Area::AREA_ADMINHTML);
+
         $orderService = $this->orderServiceFactory->create();
         $invoiceService = $this->invoiceServiceFactory->create();
+        $requestCriteria = $this->requestCriteriaBuilder->create();
+
+        if ($sku = $input->getOption(self::SKU_FILTER)) {
+            $requestCriteria->setItemSku(explode(',', $sku));
+        }
+
+        $storeId = $input->getOption(self::STORE_FILTER);
+        if (null !== $storeId) {
+            try {
+                $storeCode = $this->storeManager->getStore($storeId)->getCode();
+            } catch (\Exception $e) {
+                $storeCode = 'admin';
+            }
+            $requestCriteria->setStoreCode($storeCode);
+        }
 
         $count = $input->getOption(self::COUNTER_FLAG) ?: 1;
         for ($i=1; $i <= $count; $i++) {
@@ -115,9 +163,15 @@ class CreateOrder extends Command
                 }
             } catch (\Exception $e) {
                 $output->writeln(sprintf('<error>%s</error>', $e->getMessage()));
+                return Cli::RETURN_FAILURE;
             }
         }
-        $output->writeln(sprintf('<info>A total of %s orders have been created.</info>', $count));
+        if ($count) {
+            $output->writeln(sprintf('<info>A total of %s orders have been created.</info>', $count));
+        } else {
+            $output->writeln('<note>No orders have been created.</note>');
+        }
+
         return Cli::RETURN_SUCCESS;
     }
 }

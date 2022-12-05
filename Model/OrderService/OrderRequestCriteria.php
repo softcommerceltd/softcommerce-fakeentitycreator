@@ -126,7 +126,8 @@ class OrderRequestCriteria extends DataStorage implements OrderRequestCriteriaIn
      */
     public function getStore(): StoreInterface
     {
-        if (!$store = $this->getData(self::STORE)) {
+        $store = $this->getData(self::STORE);
+        if (null === $store) {
             $store = $this->storeManager->getStore($this->getStoreCode());
         }
         return $store;
@@ -203,7 +204,11 @@ class OrderRequestCriteria extends DataStorage implements OrderRequestCriteriaIn
     {
         if (!$this->getData(self::EMAIL)) {
             if ($this->faker()->boolean(25)) {
-                $this->setEmail($this->faker()->email);
+                if ($domainName = $this->config->getDefaultEmailDomain()) {
+                    $this->setEmail("{$this->faker()->userName}@{$domainName}");
+                } else {
+                    $this->setEmail($this->faker()->safeEmail);
+                }
             } else {
                 $connection = $this->getConnection();
                 $select = $connection->select()
@@ -479,6 +484,7 @@ class OrderRequestCriteria extends DataStorage implements OrderRequestCriteriaIn
                 'flatrate_flatrate'
             ];
         }
+
         return $methods[array_rand($methods, 1)];
     }
 

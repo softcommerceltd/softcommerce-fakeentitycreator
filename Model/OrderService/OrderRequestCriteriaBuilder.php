@@ -28,7 +28,6 @@ class OrderRequestCriteriaBuilder extends OrderRequestCriteria implements OrderR
     private $objectFactory;
 
     /**
-     * OrderRequestCriteriaBuilder constructor.
      * @param OrderRequestCriteriaInterfaceFactory $requestCriteriaFactory
      * @param ConfigInterface $config
      * @param CustomerInterfaceFactory $customerFactory
@@ -67,7 +66,7 @@ class OrderRequestCriteriaBuilder extends OrderRequestCriteria implements OrderR
     }
 
     /**
-     * @return OrderRequestCriteriaInterface
+     * @inheritDoc
      */
     public function create(): OrderRequestCriteriaInterface
     {

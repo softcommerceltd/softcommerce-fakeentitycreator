@@ -1,7 +1,9 @@
 <?xml version="1.0"?>
 <!--
- ~ Copyright © Soft Commerce Ltd. All rights reserved.
- ~ See LICENSE.txt for license details.
+/**
+ * Copyright © Soft Commerce Ltd. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
@@ -12,15 +14,15 @@
             <resource>SoftCommerce_FakeEntityCreator::fakeentitycreator_config</resource>
             <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>General</label>
-                <field id="version" type="note" translate="label" sortOrder="1" showInDefault="1">
-                    <label>Version</label>
-                    <frontend_model>SoftCommerce\FakeEntityCreator\Block\Adminhtml\System\Config\Form\Field\Version</frontend_model>
-                    <comment>Current module version</comment>
-                </field>
                 <field id="locale" translate="label" type="multiselect" sortOrder="2" showInDefault="1">
                     <label>Locale</label>
                     <source_model>Magento\Config\Model\Config\Source\Locale</source_model>
                     <comment>List of locales that are used in random data generation. Empty list will default to "en_GB, en_US and de_DE".</comment>
+                </field>
+                <field id="default_email_domain" translate="label" type="text" sortOrder="3" showInDefault="1">
+                    <label>Default Email Domain</label>
+                    <validate>validate-url</validate>
+                    <comment>Used to generate email address. Leave empty to auto generate domain name.</comment>
                 </field>
             </group>
             <group id="order_entity" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -39,7 +41,6 @@
                 </field>
                 <field id="process_batch_size" translate="label" type="text" sortOrder="4" showInDefault="1">
                     <label>Schedule process batch size</label>
-                    <backend_model>SoftCommerce\FakeEntityCreator\Model\Config\Backend\Order\CronFrequency</backend_model>
                     <comment>Number of orders created per process.</comment>
                     <depends>
                         <field id="is_active">1</field>
