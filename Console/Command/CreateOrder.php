@@ -11,7 +11,10 @@ namespace SoftCommerce\FakeEntityCreator\Console\Command;
 use Magento\Framework\App\Area;
 use Magento\Framework\App\State;
 use Magento\Framework\Console\Cli;
+use Magento\Store\Model\StoreManagerInterface;
+use Magento\Store\Model\StoreManagerInterfaceFactory;
 use SoftCommerce\FakeEntityCreator\Model\InvoiceServiceInterfaceFactory;
+use SoftCommerce\FakeEntityCreator\Model\OrderService\OrderRequestCriteriaBuilderInterfaceFactory;
 use SoftCommerce\FakeEntityCreator\Model\OrderServiceInterfaceFactory;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -33,31 +36,31 @@ class CreateOrder extends Command
     /**
      * @var State
      */
-    private $appState;
+    private State $appState;
 
     /**
-     * @var OrderRequestCriteriaBuilderInterface
+     * @var OrderRequestCriteriaBuilderInterfaceFactory
      */
-    private $requestCriteriaBuilder;
+    private OrderRequestCriteriaBuilderInterfaceFactory $requestCriteriaBuilderFactory;
 
     /**
      * @var OrderServiceInterfaceFactory
      */
-    private $orderServiceFactory;
+    private OrderServiceInterfaceFactory $orderServiceFactory;
 
     /**
      * @var InvoiceServiceInterfaceFactory
      */
-    private $invoiceServiceFactory;
+    private InvoiceServiceInterfaceFactory $invoiceServiceFactory;
 
     /**
      * @var StoreManagerInterface
      */
-    private $storeManager;
+    private StoreManagerInterface $storeManager;
 
     /**
      * @param State $appState
-     * @param OrderRequestCriteriaBuilderInterface $requestCriteriaBuilder
+     * @param OrderRequestCriteriaBuilderInterfaceFactory $requestCriteriaBuilderFactory
      * @param OrderServiceInterfaceFactory $orderServiceFactory
      * @param InvoiceServiceInterfaceFactory $invoiceServiceFactory
      * @param StoreManagerInterface $storeManager
@@ -65,14 +68,14 @@ class CreateOrder extends Command
      */
     public function __construct(
         State $appState,
-        OrderRequestCriteriaBuilderInterface $requestCriteriaBuilder,
+        OrderRequestCriteriaBuilderInterfaceFactory $requestCriteriaBuilderFactory,
         OrderServiceInterfaceFactory $orderServiceFactory,
         InvoiceServiceInterfaceFactory $invoiceServiceFactory,
         StoreManagerInterface $storeManager,
         ?string $name = null
     ) {
         $this->appState = $appState;
-        $this->requestCriteriaBuilder = $requestCriteriaBuilder;
+        $this->requestCriteriaBuilderFactory = $requestCriteriaBuilderFactory;
         $this->orderServiceFactory = $orderServiceFactory;
         $this->invoiceServiceFactory = $invoiceServiceFactory;
         $this->storeManager = $storeManager;
@@ -119,13 +122,14 @@ class CreateOrder extends Command
     /**
      * @inheritDoc
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->appState->setAreaCode(Area::AREA_ADMINHTML);
 
         $orderService = $this->orderServiceFactory->create();
         $invoiceService = $this->invoiceServiceFactory->create();
-        $requestCriteria = $this->requestCriteriaBuilder->create();
+        $requestCriteria = $this->requestCriteriaBuilderFactory->create();
+        $requestCriteria = $requestCriteria->create();
 
         if ($sku = $input->getOption(self::SKU_FILTER)) {
             $requestCriteria->setItemSku(explode(',', $sku));
