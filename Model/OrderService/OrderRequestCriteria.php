@@ -203,7 +203,7 @@ class OrderRequestCriteria extends DataStorage implements OrderRequestCriteriaIn
     public function getEmail(): ?string
     {
         if (!$this->getData(self::EMAIL)) {
-            if ($this->faker()->boolean(25)) {
+            if ($this->faker()->boolean(40)) {
                 if ($domainName = $this->config->getDefaultEmailDomain()) {
                     $this->setEmail("{$this->faker()->userName}@{$domainName}");
                 } else {
