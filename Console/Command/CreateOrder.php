@@ -12,7 +12,6 @@ use Magento\Framework\App\Area;
 use Magento\Framework\App\State;
 use Magento\Framework\Console\Cli;
 use Magento\Store\Model\StoreManagerInterface;
-use Magento\Store\Model\StoreManagerInterfaceFactory;
 use SoftCommerce\FakeEntityCreator\Model\InvoiceServiceInterfaceFactory;
 use SoftCommerce\FakeEntityCreator\Model\OrderService\OrderRequestCriteriaBuilderInterfaceFactory;
 use SoftCommerce\FakeEntityCreator\Model\OrderServiceInterfaceFactory;
