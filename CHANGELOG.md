@@ -1,5 +1,8 @@
 ## Changelog
 
+### Version 1.0.4
+- **Enhancement**: Minor changes to console command interface.
+
 ### Version 1.0.3
 - **Enhancement**: Minor decorative changes to codebase.
 
