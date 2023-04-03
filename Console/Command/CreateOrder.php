@@ -26,7 +26,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class CreateOrder extends Command
 {
-    private const COMMAND_NAME = 'faker:create:order';
+    private const COMMAND_NAME = 'faker:order';
     private const COUNTER_FLAG = 'counter';
     private const INVOICE_FLAG = 'invoice';
     private const SKU_FILTER = 'sku';
