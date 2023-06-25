@@ -1,8 +1,11 @@
 ## Changelog
 
+### Version 1.0.5
+- **Compatibility**: Compatibility with Magento 2.4.6-p1
+- **Compatibility**: Compatibility with PHP 8.2
+
 ### Version 1.0.4
 - **Enhancement**: Minor changes to console command interface.
-- test
 
 ### Version 1.0.3
 - **Enhancement**: Minor decorative changes to codebase.

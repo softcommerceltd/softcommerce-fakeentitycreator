@@ -2,8 +2,10 @@
     "name": "softcommerce/module-fakeentitycreator",
     "description": "Fake Entity Creator - used to create fake data for catalog, order and customer entities.",
     "require": {
-        "php": "~8.0.0||~8.1.0",
+        "php": "~8.0.0||~8.1.0||~8.2.0",
         "fakerphp/faker": "*",
+        "magento/module-customer": "^102||^103",
+        "magento/module-sales": "^102||^103",
         "softcommerce/module-core": "*"
     },
     "type": "magento2-module",
