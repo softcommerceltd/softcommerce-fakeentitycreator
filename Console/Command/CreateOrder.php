@@ -152,7 +152,13 @@ class CreateOrder extends Command
                     continue;
                 }
 
-                $output->writeln(sprintf('<info>New Order: # %s.</info>', $order->getIncrementId()));
+                $output->writeln(
+                    sprintf(
+                        '<info>New Order:</info> <comment># %s ::: %s</comment>',
+                        $order->getEntityId(),
+                        $order->getIncrementId()
+                    )
+                );
                 if (!$input->getOption(self::INVOICE_FLAG)) {
                     continue;
                 }
