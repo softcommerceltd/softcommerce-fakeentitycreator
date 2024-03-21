@@ -1,5 +1,8 @@
 ## Changelog
 
+### Version 1.0.7
+- **Compatibility**: Compatibility with PHP 8.3
+
 ### Version 1.0.6
 - **Compatibility**: Compatibility with Magento 2.4.7
 
